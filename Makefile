@@ -19,6 +19,7 @@ $(NAME): $(addsuffix .class, $(OBJS))
 
 clean:
 	rm -rf $(addsuffix .class, $(OBJS))
+	rm -rf MANIFEST.MF
 
 fclean: clean
 	rm -rf $(NAME)
