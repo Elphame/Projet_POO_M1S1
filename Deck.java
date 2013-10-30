@@ -27,7 +27,7 @@ public class Deck
 	public Deck(int nbrDecks)
 	{
 		this.ptr = 0;
-		this.jeu = new ArrayList<Carte>();
+		this.jeu = new ArrayList<Carte>(52 * nbrDecks);
 		for (int i = 0; i < nbrDecks; i++)
 		{
 			for (String c : Couleurs.valeurs)
