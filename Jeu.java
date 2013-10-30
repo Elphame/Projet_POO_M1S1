@@ -4,10 +4,11 @@
  */
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public abstract class Jeu
 {
-	protected LinkedList<Carte>[] table;
+	protected ArrayList<LinkedList<Carte>> table;
 
 	/**
 	 * Initialise une table pour une partie de cartes.
@@ -15,10 +16,10 @@ public abstract class Jeu
 	 */
 	public Jeu(int nbrPiles)
 	{
-		this.table = new LinkedList<Carte>[nbrPiles];
+		this.table = new ArrayList<LinkedList<Carte>>(nbrPiles);
 		for (int i = 0; i < nbrPiles; i++)
 		{
-			this.table[i] = new LinkedList<Carte>();
+			this.table.set(i, new LinkedList<Carte>());
 		}
 	}
 }

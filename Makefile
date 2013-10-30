@@ -3,6 +3,7 @@
 NAME  = Projet.jar
 OBJS  = Main Util
 OBJS += Carte Deck Couleurs Valeurs
+OBJS += Jeu FortyAndEight
 ENPT  = Main
 
 .PHONY: all clean fclean re

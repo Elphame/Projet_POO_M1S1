@@ -11,6 +11,7 @@ public class FortyAndEight extends Jeu
 
 	public FortyAndEight()
 	{
+		super(7);
 		Deck d = new Deck(2);
 		this.talon = new LinkedList<Carte>();
 		while (true)
