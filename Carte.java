@@ -54,7 +54,13 @@ public class Carte implements Comparable<Carte>
 	 */
 	public int compareTo(Carte c)
 	{
-		return (Util.indexOf(Valeurs.valeurs, this.getValeur())
+		return (Util.indexOf(Valeurs.valeurs, this.valeur())
 				- Util.indexOf(Valeurs.valeurs, c.getValeur()));
+	}
+
+	public boolean compareCouleur(Carte c)
+	{
+		return Util.indexOf(Couleurs.valeurs, this.couleur)
+			== Util.indexOf(Couleurs.valeurs, c.getCouleur());
 	}
 }
