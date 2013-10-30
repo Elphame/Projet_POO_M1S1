@@ -54,8 +54,8 @@ public class Carte implements Comparable<Carte>
 	 */
 	public int compareTo(Carte c)
 	{
-		return (Util.indexOf(Valeurs.valeurs, this.valeur())
-				- Util.indexOf(Valeurs.valeurs, c.getValeur()));
+		return (Util.indexOf(Valeurs.valeurs, this.valeur)
+				- Util.indexOf(Valeurs.valeurs, c.valeur));
 	}
 
 	/**
