@@ -61,7 +61,7 @@ public class Carte implements Comparable<Carte>
 	/**
 	 * Permet de savoir si la Carte courante est de la même couleur que la Carte
 	 * comparée.
-	 * @return true si la couleur est la même, false sinon.x
+	 * @return true si la couleur est la même, false sinon.
 	 */
 	public boolean compareCouleur(Carte c)
 	{
