@@ -58,9 +58,13 @@ public class Carte implements Comparable<Carte>
 				- Util.indexOf(Valeurs.valeurs, c.getValeur()));
 	}
 
+	/**
+	 * Permet de savoir si la Carte courante est de la même couleur que la Carte
+	 * comparée.
+	 * @return true si la couleur est la même, false sinon.x
+	 */
 	public boolean compareCouleur(Carte c)
 	{
-		return Util.indexOf(Couleurs.valeurs, this.couleur)
-			== Util.indexOf(Couleurs.valeurs, c.getCouleur());
+		return this.couleur.equals(c.getCouleur());
 	}
 }
