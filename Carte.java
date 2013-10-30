@@ -3,7 +3,7 @@
  * @author Caroline Brogniez
  */
 
-public class Carte
+public class Carte implements Comparable<Carte>
 {
 	private final String valeur;
 	private final String couleur;
@@ -46,21 +46,9 @@ public class Carte
 		return (this.valeur + " " + this.couleur);
 	}
 
-	public int compareValeur(Carte c)
+	public int compareTo(Carte c)
 	{
-		if (Util.indexOf(Valeurs.valeurs, this.valeur)
-			== Util.indexOf(Valeurs.valeurs, c.getValeur()))
-		{
-			return 0;
-		}
-		else if (Util.indexOf(Valeurs.valeurs, this.valeur)
-			> Util.indexOf(Valeurs.valeurs, c.getValeur()))
-		{
-			return 1;
-		}
-		else
-	   	{
-			return -1;
-		}
+		return (Util.indexOf(Valeurs.valeurs, this.getValeur())
+				- Util.indexOf(Valeurs.valeurs, c.getValeur()));
 	}
 }

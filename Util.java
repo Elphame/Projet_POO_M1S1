@@ -1,11 +1,13 @@
+import java.util.NoSuchElementException;
+
 public class Util
 {
-	public static int indexOf(String [] liste, String s)
+	public static int indexOf(Object [] liste, Object o)
 	{
 		for(int i = 0; i < liste.length; i++)
 		{
-			if (liste[i].equals(s)) return i;
+			if (liste[i].equals(o)) return i;
 		}
-		return -1;
+		throw new NoSuchElementException();
 	}
 }
