@@ -47,8 +47,9 @@ public class Carte implements Comparable<Carte>
 	}
 
 	/**
-	 * Retourne -1, 0 ou 1 suivant si la Carte courante a une valeur plus
-	 * petite, égale ou plus grande que la Carte comparée.
+	 * Retourne la différence entre la valeur de la Carte courante et la valeur
+	 * de la Carte comparée. Si Cette différence est égale à -1 ou à 1 cela
+	 * signifie que ce sont deux Cartes consécutives.
 	 * @return La valeur de comparaison.
 	 */
 	public int compareTo(Carte c)
