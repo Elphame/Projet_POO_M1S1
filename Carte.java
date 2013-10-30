@@ -46,6 +46,11 @@ public class Carte implements Comparable<Carte>
 		return (this.valeur + " " + this.couleur);
 	}
 
+	/**
+	 * Retourne -1, 0 ou 1 suivant si la Carte courante a une valeur plus
+	 * petite, égale ou plus grande que la Carte comparée.
+	 * @return La valeur de comparaison.
+	 */
 	public int compareTo(Carte c)
 	{
 		return (Util.indexOf(Valeurs.valeurs, this.getValeur())
