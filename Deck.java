@@ -16,13 +16,26 @@ public class Deck
 	 */
 	public Deck()
 	{
+		this(1);
+	}
+
+	/**
+	 * Construit une nouvelle instance de jeu de cartes, en y plaçant
+	 * nbr jeux complets.
+	 * @param nbr Le nombre de jeux complets (52 cartes) à intégrer.
+	 */
+	public Deck(int nbrDecks)
+	{
 		this.ptr = 0;
-		this.jeu = new ArrayList<Carte>();
-		for (String c : Couleurs.valeurs)
+		this.jeu = new ArrayList<Carte>(52 * nbrDecks);
+		for (int i = 0; i < nbrDecks; i++)
 		{
-			for (String v : Valeurs.valeurs)
+			for (String c : Couleurs.valeurs)
 			{
-				this.jeu.add(new Carte(v, c));
+				for (String v : Valeurs.valeurs)
+				{
+					this.jeu.add(new Carte(v, c));
+				}
 			}
 		}
 		this.melanger();
@@ -36,10 +49,11 @@ public class Deck
 		Random r = new Random();
 		Carte c;
 		int j;
-		for (int i = 0; i < 52; i++)
+		int size = this.jeu.size();
+		for (int i = 0; i < size; i++)
 		{
 			c = this.jeu.get(i);
-			j = r.nextInt(52);
+			j = r.nextInt(size);
 			this.jeu.set(i, this.jeu.get(j));
 			this.jeu.set(j, c);
 		}
@@ -52,7 +66,7 @@ public class Deck
 	 */
 	public Carte piocher()
 	{
-		if (ptr >= 52)
+		if (ptr >= this.jeu.size())
 			throw new RuntimeException("Paquet vide.");
 		Carte c = this.jeu.get(this.ptr);
 		this.ptr++;
