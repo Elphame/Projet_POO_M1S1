@@ -4,11 +4,12 @@
  */
 
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Deck
 {
-	private Carte[] jeu;
 	private int ptr;
+	private ArrayList<Carte> jeu;
 
 	/**
 	 * Construit une nouvelle instance de jeu de cartes.
@@ -16,14 +17,12 @@ public class Deck
 	public Deck()
 	{
 		this.ptr = 0;
-		int i = 0;
-		this.jeu = new Carte[52];
+		this.jeu = new ArrayList<Carte>();
 		for (String c : Couleurs.valeurs)
 		{
 			for (String v : Valeurs.valeurs)
 			{
-				this.jeu[i] = new Carte(v, c);
-				i++;
+				this.jeu.add(new Carte(v, c));
 			}
 		}
 		this.melanger();
@@ -39,10 +38,10 @@ public class Deck
 		int j;
 		for (int i = 0; i < 52; i++)
 		{
-			c = this.jeu[i];
+			c = this.jeu.get(i);
 			j = r.nextInt(52);
-			this.jeu[i] = this.jeu[j];
-			this.jeu[j] = c;
+			this.jeu.set(i, this.jeu.get(j));
+			this.jeu.set(j, c);
 		}
 	}
 
@@ -55,7 +54,7 @@ public class Deck
 	{
 		if (ptr >= 52)
 			throw new RuntimeException("Paquet vide.");
-		Carte c = this.jeu[this.ptr];
+		Carte c = this.jeu.get(this.ptr);
 		this.ptr++;
 		return (c);
 	}
