@@ -19,7 +19,7 @@ public abstract class Jeu
 		this.table = new ArrayList<LinkedList<Carte>>(nbrPiles);
 		for (int i = 0; i < nbrPiles; i++)
 		{
-			this.table.set(i, new LinkedList<Carte>());
+			this.table.add(i, new LinkedList<Carte>());
 		}
 	}
 }
