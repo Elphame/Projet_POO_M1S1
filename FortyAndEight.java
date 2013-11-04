@@ -35,4 +35,27 @@ public class FortyAndEight extends Jeu
 			}
 		}
 	}
+
+	/**
+	 * Retourne une représentation textuelle de la partie, c'est-à-dire
+	 * de la table au moment où la méthode est appelée.
+	 * @return String Une représentation textuelle de la table, c'est-à-dire
+	 * des huit piles, de la première carte du pot (X s'il est vide), et un
+	 * O si le talon contient au moins une carte, X s'il est vide.
+	 */
+	public String toString()
+	{
+		StringBuffer s = new StringBuffer(super.toString());
+		s.append("[Pot] ");
+		if (this.pot.size() == 0)
+			s.append("X\n");
+		else
+			s.append(this.pot.pollFirst().toString() + "\n");
+		s.append("[Talon] ");
+		if (this.talon.size() == 0)
+			s.append("X\n");
+		else
+			s.append("O\n");
+		return (s.toString());
+	}
 }

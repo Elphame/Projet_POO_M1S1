@@ -5,9 +5,13 @@
 
 public class Valeurs
 {
+	/**
+	 * Un tableau contenant les différentes valeurs possibles pour une carte.
+	 * Ces valeurs sont abrégées pour faciliter la lecture.
+	 */
 	public static final String[] valeurs =
 	{
-		"As",
+		"A",
 		"2",
 		"3",
 		"4",
@@ -17,8 +21,8 @@ public class Valeurs
 		"8",
 		"9",
 		"10",
-		"Valet",
-		"Dame",
-		"Roi"
+		"V",
+		"D",
+		"R"
 	};
 }

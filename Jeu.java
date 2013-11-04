@@ -24,6 +24,27 @@ public abstract class Jeu
 	}
 
 	/**
+	 * Retourne une représentation textuelle de la partie, c'est-à-dire de la
+	 * table au moment ou la méthode est appelée.
+	 * @return String Une liste commençant par un (1) des piles de carte sur la
+	 * table.
+	 */
+	public String toString()
+	{
+		StringBuffer s = new StringBuffer();
+		for (int i = 0; i < this.table.size(); i++)
+		{
+			s.append("[" + (i + 1) + "]");
+			for (Carte c : this.table.get(i))
+			{
+				s.append(" " + c.toString());
+			}
+			s.append("\n");
+		}
+		return (s.toString());
+	}
+
+	/**
 	 * Déplace un nombre de cartes donné en argument d'une pile à une autre
 	 * de la table, en conservant leur ordre. À noter que cette méthode
 	 * n'effectue des vérifications que sur le nombre de cartes dans chaque

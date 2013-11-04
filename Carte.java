@@ -43,7 +43,7 @@ public class Carte implements Comparable<Carte>
 	 */
 	public String toString()
 	{
-		return (this.valeur + " " + this.couleur);
+		return (this.valeur + this.couleur);
 	}
 
 	/**
