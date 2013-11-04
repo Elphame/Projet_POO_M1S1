@@ -9,5 +9,7 @@ public class Main
 	{
 		FortyAndEight f = new FortyAndEight();
 		System.out.println(f.toString());
+		f.deplacer(1, 2, 2);
+		System.out.println(f.toString());
 	}
 }
