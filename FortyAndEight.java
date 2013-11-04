@@ -9,10 +9,16 @@ public class FortyAndEight extends Jeu
 {
 	private LinkedList<Carte> talon;
 	private LinkedList<Carte> pot;
+	private boolean deuxiemeTalon;
 
+	/**
+	 * Construit une nouvelle partie de Forty and eight, en initialisant les
+	 * huit piles de la table, le pot et le talon.
+	 */
 	public FortyAndEight()
 	{
 		super(8);
+		this.deuxiemeTalon = false;
 		Deck d = new Deck(2);
 		this.pot = new LinkedList<Carte>();
 		this.talon = new LinkedList<Carte>();
@@ -50,12 +56,37 @@ public class FortyAndEight extends Jeu
 		if (this.pot.size() == 0)
 			s.append("X\n");
 		else
-			s.append(this.pot.pollFirst().toString() + "\n");
+			s.append(this.pot.peekFirst().toString() + "\n");
 		s.append("[Talon] ");
 		if (this.talon.size() == 0)
 			s.append("X\n");
 		else
 			s.append("O\n");
 		return (s.toString());
+	}
+
+	/**
+	 * Pioche une carte du talon et la pose au sommet du pot. Le talon est
+	 * retourné si besoin.
+	 * @return RuntimeException Si le talon est vide pour la deuxième fois.
+	 */
+	public void piocher()
+	{
+		if (this.talon.size() == 0)
+		{
+			if (this.deuxiemeTalon == false)
+			{
+				this.talon = new LinkedList<Carte>(this.pot);
+				this.pot = new LinkedList<Carte>();
+				this.deuxiemeTalon = true;
+			}
+			else
+				throw new RuntimeException("Le talon ne peut pas être"
+										   + " retourné deux fois.");
+		}
+		else
+		{
+			this.pot.addFirst(this.talon.pollFirst());
+		}
 	}
 }
