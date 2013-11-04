@@ -34,13 +34,5 @@ public class FortyAndEight extends Jeu
 				this.table.get(i).add(this.talon.poll());
 			}
 		}
-		for (int i = 0; i < 8; i++)
-		{
-			for (Carte c : this.table.get(i))
-			{
-				System.out.println(c.toString());
-			}
-			System.out.println();
-		}
 	}
 }
