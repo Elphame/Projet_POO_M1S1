@@ -3,10 +3,12 @@
  * @author Antoine Lafouasse
  */
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class FortyAndEight extends Jeu
 {
+	private ArrayList<LinkedList<Carte>> bases;
 	private LinkedList<Carte> talon;
 	private LinkedList<Carte> pot;
 	private boolean deuxiemeTalon;
@@ -18,10 +20,13 @@ public class FortyAndEight extends Jeu
 	public FortyAndEight()
 	{
 		super(8);
-		this.deuxiemeTalon = false;
+		this.bases = new ArrayList<LinkedList<Carte>>(8);
+		for (int i = 0; i < 8; i++)
+			this.bases.add(i, new LinkedList<Carte>());
 		Deck d = new Deck(2);
 		this.pot = new LinkedList<Carte>();
 		this.talon = new LinkedList<Carte>();
+		this.deuxiemeTalon = false;
 		while (true)
 		{
 			try
@@ -51,7 +56,17 @@ public class FortyAndEight extends Jeu
 	 */
 	public String toString()
 	{
-		StringBuffer s = new StringBuffer(super.toString());
+		StringBuffer s = new StringBuffer();
+		for (int i = 0; i < 8; i++)
+		{
+			s.append("[B" + (i + 1) + "]");
+			for (Carte c : this.bases.get(i))
+			{
+				s.append(" " + c.toString());
+			}
+			s.append("\n");
+		}
+		s.append(super.toString());
 		s.append("[Pot] ");
 		if (this.pot.size() == 0)
 			s.append("X\n");
