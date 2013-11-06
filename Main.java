@@ -22,5 +22,7 @@ public class Main
 				break ;
 			}
 		}
+		f.deplacer(1, 2, 3);
+		System.out.println(f.toString());
 	}
 }

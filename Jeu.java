@@ -65,21 +65,9 @@ public abstract class Jeu
 		else if (dest < 0 || dest >= this.table.size())
 			throw new IllegalArgumentException(
 				"Pile de destination invalide: " + (dest + 1));
-		else if (nbrCartes < 1)
+		else if (nbrCartes < 0)
 			throw new IllegalArgumentException(
 				"Impossible de déplacer " + nbrCartes + " cartes");
-		else if (nbrCartes >= this.table.get(orig).size())
-			throw new IllegalArgumentException(
-				"Il n'y a pas " + nbrCartes + "dans la pile: " + (orig + 1));
-
-		LinkedList<Carte> temp = new LinkedList<Carte>();
-		for (int i = 0; i < nbrCartes; i++)
-		{
-			temp.addFirst(this.table.get(orig).pollLast());
-		}
-		for (int i = 0; i < nbrCartes; i++)
-		{
-			this.table.get(dest).addLast(temp.pollFirst());
-		}
+		Util.deplacer(this.table.get(orig), this.table.get(dest), nbrCartes);
 	}
 }
