@@ -123,10 +123,7 @@ public class FortyAndEight extends Jeu
 		{
 			try
 			{
-				System.out.println("Origine ?");
-				System.out.println("0 : piocher");
-				System.out.println("1 : pot");
-				System.out.println("2 : pile");
+				System.out.print("Origine ? 0: piocher, 1: pot, 2: pile > ");
 				input = s.nextInt();
 				if (input == 0)
 				{
@@ -142,7 +139,7 @@ public class FortyAndEight extends Jeu
 				}
 				else if (input == 2)
 				{
-					System.out.println("Sélectionner une pile : 1~8");
+					System.out.print("Choisir une pile (1~8) > ");
 					input = s.nextInt() - 1;
 					if (input < 0 || input > 7)
 						throw new RuntimeException("Entrée invalide.");
@@ -154,13 +151,11 @@ public class FortyAndEight extends Jeu
 				else
 					throw new RuntimeException("Entrée invalide.");
 				c = orig.peekLast();
-				System.out.println("Destination ?");
-				System.out.println("0 : pile");
-				System.out.println("1 : base");
+				System.out.print("Destination ? 0: pile, 1: base > ");
 				input = s.nextInt();
 				if (input == 0)
 				{
-					System.out.println("Choisir une pile : 1~8");
+					System.out.print("Choisir une pile (1~8) > ");
 					input = s.nextInt() - 1;
 					if (input < 0 || input > 7)
 						throw new RuntimeException("Entrée invalide.");
@@ -186,7 +181,7 @@ public class FortyAndEight extends Jeu
 				}
 				else if (input == 1)
 				{
-					System.out.println("Choisir une base : 1~8");
+					System.out.print("Choisir une base (1~8) > ");
 					input = s.nextInt() - 1;
 					if (input < 0 || input > 7)
 						throw new RuntimeException("Entrée invalide.");
