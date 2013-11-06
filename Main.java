@@ -9,20 +9,7 @@ public class Main
 	{
 		FortyAndEight f = new FortyAndEight();
 		System.out.println(f.toString());
-		while (true)
-		{
-			try
-			{
-				f.piocher();
-				System.out.println(f.toString());
-			}
-			catch (RuntimeException e)
-			{
-				System.out.println(e.getMessage());
-				break ;
-			}
-		}
-		f.deplacer(1, 2, 3);
+		f.jouer();
 		System.out.println(f.toString());
 	}
 }

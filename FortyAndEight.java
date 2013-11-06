@@ -5,6 +5,8 @@
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class FortyAndEight extends Jeu
 {
@@ -31,7 +33,7 @@ public class FortyAndEight extends Jeu
 		{
 			try
 			{
-				this.talon.add(d.piocher());
+				this.talon.addLast(d.piocher());
 			}
 			catch (RuntimeException e)
 			{
@@ -42,7 +44,7 @@ public class FortyAndEight extends Jeu
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				this.table.get(i).add(this.talon.poll());
+				this.table.get(i).add(this.talon.pollLast());
 			}
 		}
 	}
@@ -71,7 +73,7 @@ public class FortyAndEight extends Jeu
 		if (this.pot.size() == 0)
 			s.append("X\n");
 		else
-			s.append(this.pot.peekFirst().toString() + "\n");
+			s.append(this.pot.peekLast().toString() + "\n");
 		s.append("[Talon] ");
 		if (this.talon.size() == 0)
 			s.append("X\n");
@@ -101,7 +103,129 @@ public class FortyAndEight extends Jeu
 		}
 		else
 		{
-			this.pot.addFirst(this.talon.pollFirst());
+			this.pot.addLast(this.talon.pollLast());
+		}
+	}
+	/**
+	 * Exécute un tour de jeu. Cette méthode utilise l'entrée standard pour
+	 * demander à l'utilisateur quel mouvement il veut exécuter, vérifie
+	 * sa légalité et l'applique.
+	 */
+	public void jouer()
+	{
+		Scanner s = new Scanner(System.in);
+		int input;
+		Carte c = null;
+		Carte cible = null;
+		LinkedList<Carte> orig = null;
+		LinkedList<Carte> dest = null;
+		while (true)
+		{
+			try
+			{
+				System.out.println("Origine ?");
+				System.out.println("0 : piocher");
+				System.out.println("1 : pot");
+				System.out.println("2 : pile");
+				input = s.nextInt();
+				if (input == 0)
+				{
+					this.piocher();
+					break ;
+				}
+				else if (input == 1)
+				{
+					if (this.pot.size() == 0)
+						throw new RuntimeException("Le pot est vide.");
+					else
+						orig = this.pot;
+				}
+				else if (input == 2)
+				{
+					System.out.println("Sélectionner une pile : 1~8");
+					input = s.nextInt() - 1;
+					if (input < 0 || input > 7)
+						throw new RuntimeException("Entrée invalide.");
+					else if (this.table.get(input).size() == 0)
+						throw new RuntimeException("Cette pile est vide.");
+					else
+						orig = this.table.get(input);
+				}
+				else
+					throw new RuntimeException("Entrée invalide.");
+				c = orig.peekLast();
+				System.out.println("Destination ?");
+				System.out.println("0 : pile");
+				System.out.println("1 : base");
+				input = s.nextInt();
+				if (input == 0)
+				{
+					System.out.println("Choisir une pile : 1~8");
+					input = s.nextInt() - 1;
+					if (input < 0 || input > 7)
+						throw new RuntimeException("Entrée invalide.");
+					else
+					{
+						if (this.table.get(input).size() == 0)
+						{
+							if (c.getValeur().equals("R"))
+								dest = this.table.get(input);
+							else
+								throw new RuntimeException("Mouvement illégal.");
+						}
+						else
+						{
+							cible = this.table.get(input).peekLast();
+							if (c.compareCouleur(cible)
+								&& c.compareTo(cible) == -1)
+								dest = this.table.get(input);
+							else
+								throw new RuntimeException("Mouvement illégal.");
+						}
+					}
+				}
+				else if (input == 1)
+				{
+					System.out.println("Choisir une base : 1~8");
+					input = s.nextInt() - 1;
+					if (input < 0 || input > 7)
+						throw new RuntimeException("Entrée invalide.");
+					else
+					{
+						if (this.bases.get(input).size() == 0)
+						{
+							if (c.getValeur().equals("A"))
+								dest = this.bases.get(input);
+							else
+								throw new RuntimeException("Mouvement illégal.");
+						}
+						else
+						{
+							cible = this.bases.get(input).peekLast();
+							if (c.compareCouleur(cible)
+								&& c.compareTo(cible) == 1)
+								dest = this.bases.get(input);
+							else
+								throw new RuntimeException("Mouvement illégal.");
+						}
+					}
+				}
+				else
+					throw new RuntimeException("Entrée invalide.");
+				Util.deplacer(orig, dest, 1);
+				break ;
+			}
+			catch (InputMismatchException e)
+			{
+				System.out.println("Entrée invalide.");
+				s.nextLine();
+				continue ;
+			}
+			catch (Exception e)
+			{
+				System.out.println(e.getMessage());
+				continue ;
+			}
 		}
 	}
 }
