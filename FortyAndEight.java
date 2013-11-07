@@ -106,6 +106,22 @@ public class FortyAndEight extends Jeu
 			this.pot.addLast(this.talon.pollLast());
 		}
 	}
+
+	/**
+	 * Vérifie si la partie est terminée (si toutes les bases ont été
+	 * remplies, avec un roi au sommet).
+	 * @return true si le joueur a terminé la partie, faux sinon.
+	 */
+	public boolean estTermine()
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			if (!this.bases.get(i).peekLast().getValeur().equals("R"))
+				return (false);
+		}
+		return (true);
+	}
+
 	/**
 	 * Exécute un tour de jeu. Cette méthode utilise l'entrée standard pour
 	 * demander à l'utilisateur quel mouvement il veut exécuter, vérifie
